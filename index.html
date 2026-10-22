@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor AI — বাংলা মেডিকেল সহকারী</title>
+<style>
+:root{--p:#6657d9;--bg:#f7f6fc;--card:#fff;--text:#201e2b;--muted:#6f6a80}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans Bengali","Hind Siliguri",system-ui,sans-serif}
+header{background:var(--p);color:white;padding:18px clamp(16px,4vw,42px);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:1.2rem;display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:white;color:var(--p);display:grid;place-items:center;font-size:22px}
+.pill{border:1px solid #ffffff88;border-radius:99px;padding:6px 10px;font-size:.8rem}
+main{width:min(900px,100%);margin:auto;padding:28px 16px 36px}.intro{text-align:center;margin-bottom:24px}.intro h1{font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.4;margin:0 0 10px}.intro p{line-height:1.8;color:var(--muted);max-width:670px;margin:auto}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.feature{background:var(--card);border:1px solid #e8e5f4;border-radius:16px;padding:14px;text-align:center}.feature b{display:block;margin:7px 0 4px}.feature small{color:var(--muted);line-height:1.5}
+.chat{background:var(--card);border:1px solid #e5e1f1;border-radius:20px;overflow:hidden}.chathead{padding:15px 18px;border-bottom:1px solid #ece9f6;font-weight:700}.status{font-size:.78rem;color:#31966d;font-weight:400;margin-top:3px}
+.messages{padding:18px;min-height:240px;max-height:440px;overflow:auto;display:flex;flex-direction:column;gap:12px}.msg{max-width:88%;padding:12px 14px;border-radius:15px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}.bot{align-self:flex-start;background:#f1effb;border-bottom-left-radius:5px}.user{align-self:flex-end;background:var(--p);color:white;border-bottom-right-radius:5px}
+.suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 14px}.suggestions button{border:1px solid #ded9f3;color:#4f438f;background:white;padding:8px 11px;border-radius:99px;font:inherit;font-size:.82rem;cursor:pointer}
+form{display:flex;gap:8px;padding:13px;border-top:1px solid #ece9f6}input{min-width:0;flex:1;border:1px solid #ded9ec;border-radius:12px;padding:12px;font:inherit}form button{border:0;border-radius:12px;background:var(--p);color:white;font:inherit;font-weight:700;padding:0 17px;cursor:pointer}
+.note{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:18px}.busy{opacity:.7}
+@media(max-width:600px){.features{grid-template-columns:1fr}.feature{display:flex;align-items:center;gap:10px;text-align:left}.feature small{display:none}.pill{font-size:.7rem}.msg{max-width:95%}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">✚</div><span>Doctor AI</span></div><div class="pill">বাংলা ও ইংরেজি সহকারী</div></header>
+<main>
+<section class="intro"><h1>স্বাগতম Doctor AI-তে! 👋</h1><p>মেডিকেল পড়াশোনা, BMDC প্রস্তুতি এবং সাধারণ স্বাস্থ্যতথ্য সহজভাবে বুঝতে প্রশ্ন করুন।</p></section>
+<section class="features">
+<div class="feature"><span>📚</span><div><b>মেডিকেল পড়াশোনা</b><small>সহজ ব্যাখ্যা ও ধারণা</small></div></div>
+<div class="feature"><span>📝</span><div><b>BMDC প্রস্তুতি</b><small>MCQ অনুশীলন ও ব্যাখ্যা</small></div></div>
+<div class="feature"><span>🌐</span><div><b>বাংলা ও ইংরেজি</b><small>দুই ভাষায় প্রশ্নোত্তর</small></div></div>
+</section>
+<section class="chat">
+<div class="chathead">🩺 Doctor AI <div class="status" id="status">● চ্যাট প্রস্তুত</div></div>
+<div class="messages" id="messages" aria-live="polite"><div class="msg bot">আসসালামু আলাইকুম! 😊 আমি Doctor AI। মেডিকেল পড়াশোনা বা সাধারণ স্বাস্থ্যতথ্য নিয়ে প্রশ্ন করুন। ব্যক্তিগত রোগীর পরিচয় বা গোপন তথ্য লিখবেন না।</div></div>
+<div class="suggestions">
+<button type="button" data-q="একটি মেডিকেল MCQ দাও">📝 মেডিকেল MCQ</button>
+<button type="button" data-q="Parkinson disease সহজ বাংলায় বুঝিয়ে বলো">🧠 Parkinson disease</button>
+<button type="button" data-q="BMDC প্রস্তুতির জন্য পড়ার রুটিন বানাও">📅 পড়ার রুটিন</button>
+</div>
+<form id="chatForm"><input id="userInput" placeholder="আপনার প্রশ্ন লিখুন…" aria-label="আপনার প্রশ্ন" autocomplete="off" required><button id="sendBtn" type="submit">পাঠান ➤</button></form>
+</section>
+<p class="note"><b>স্বাস্থ্য-সতর্কতা:</b> Doctor AI-এর উত্তর ভুল বা অসম্পূর্ণ হতে পারে। এটি চিকিৎসকের পরামর্শ, রোগ নির্ণয়, প্রেসক্রিপশন বা জরুরি সেবার বিকল্প নয়। গুরুতর বা জরুরি লক্ষণ হলে দ্রুত চিকিৎসা নিন। পরীক্ষার প্রস্তুতিতে নির্ভরযোগ্য বই ও শিক্ষকের সঙ্গে তথ্য যাচাই করুন।</p>
+</main>
+<script>
+const form=document.getElementById('chatForm'),input=document.getElementById('userInput'),messages=document.getElementById('messages'),statusEl=document.getElementById('status'),sendBtn=document.getElementById('sendBtn');
+function addMessage(text,who){const el=document.createElement('div');el.className='msg '+who;el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;return el}
+async function send(q){const text=q.trim();if(!text)return;addMessage(text,'user');input.value='';input.disabled=true;sendBtn.disabled=true;statusEl.textContent='● উত্তর তৈরি হচ্ছে…';const waiting=addMessage('একটু অপেক্ষা করুন…','bot');waiting.classList.add('busy');
+try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text})});const data=await r.json();waiting.remove();if(!r.ok)throw new Error(data.error||'অনুরোধটি সম্পন্ন করা যায়নি।');addMessage(data.reply||'দুঃখিত, কোনো উত্তর পাওয়া যায়নি।','bot');statusEl.textContent='● উত্তর প্রস্তুত';}
+catch(e){waiting.remove();addMessage('দুঃখিত, এখন উত্তর পাওয়া যায়নি। '+(e.message||'পরে আবার চেষ্টা করুন।'),'bot');statusEl.textContent='● সংযোগ পরীক্ষা করুন';}
+finally{input.disabled=false;sendBtn.disabled=false;input.focus()}}
+form.addEventListener('submit',e=>{e.preventDefault();send(input.value)});document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>send(b.dataset.q)));
+</script>
+</body>
+</html>
